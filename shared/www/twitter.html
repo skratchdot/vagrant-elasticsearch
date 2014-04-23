@@ -1,0 +1,101 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Twitter River Control</title>
+	<style type="text/css">
+	    a {
+	        color: blue;
+	        text-decoration: none;
+	        border: 1px solid black;
+	        padding: 10px;
+	        background: #eee;
+	    }
+	    a:hover {
+	        background: #aaa;
+	    }
+	    code {
+	        margin-top: 30px;
+	    }
+	    pre {
+	        border: 10px solid black;
+	        height: 200px;
+	        overflow: auto;
+	        padding: 10px;
+	        background: #eee;
+	    }
+	</style>
+    <script src="/assets/js/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Twitter River: <span id="status"></span></h1>
+	<div>
+        <a href="twitter.html">STATUS</a>
+        <a href="#start">START</a>
+	    <a href="#stop">STOP</a>
+	</div>
+	<br />
+    <code><pre id="result"></pre></code>
+	<script>
+    (function () {
+        var parse, handleHash;
+
+        parse = function (data) {
+            try {
+                data = JSON.parse(data);
+                data = JSON.stringify(data, null, '\t');
+            } catch (e) {}
+            return data;
+        };
+
+        handleHash = function () {
+            var hash = window.location.hash,
+                $status = $('#status'),
+                $result = $('#result');
+            $status.text();
+            $result.empty();
+            if (hash === '#start') {
+                $status.text('[START] Requested');
+                $.ajax({
+                    url: 'twitter.json',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (startData) {
+                        $.ajax({
+                            url: 'http://192.168.33.10:9200/_river/twitter/_meta',
+                            type: 'PUT',
+                            data: JSON.stringify(startData),
+                            complete: function (xhr) {
+                                $result.text(parse(xhr.responseText));
+                            }
+                        });
+                    }
+                });
+            } else if (hash === '#stop') {
+                $status.text('[STOP] Requested');
+                $.ajax({
+                    url: 'http://192.168.33.10:9200/_river/twitter/',
+                    type: 'DELETE',
+                    dataType: 'json',
+                    complete: function (xhr) {
+                        $result.text(parse(xhr.responseText));
+                    }
+                });
+            } else {
+                $status.text('[STATUS]');
+                $.ajax({
+                    url: 'http://192.168.33.10:9200/_river/twitter/_status',
+                    type: 'GET',
+                    dataType: 'json',
+                    complete: function (xhr) {
+                        $result.text(parse(xhr.responseText));
+                    }
+                });
+            }
+        };
+        // attach events
+        $(window).on('hashchange', handleHash);
+        $(document).ready(handleHash);
+    }());
+	</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Bootstrap</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
+    <style>
+      body {
+        background: url('assets/img/textured_paper.png') repeat top left;
+        background-color: #f6f6f6;
+      }
+      .main {
+        padding: 0px 40px;
+        background: rgba(255,255,255,0.5);
+        -webkit-box-shadow: 0 0 20px #d2d2d2;
+        box-shadow: 0 0 20px #d2d2d2;
+      }
+      .container {
+        width: 1100px;
+      }
+      .nav-list {
+        font-size: 17px;
+      }
+      .nav-header {
+        font-size: 17px;
+        text-transform: none;
+        line-height: 30px;
+      }
+    </style>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
+    
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <ul class="nav nav-list"><li><a href="#vagrant_elasticsearch">vagrant-elasticsearch</a></li><li><a href="#dependencies">dependencies</a></li><li><a href="#installation">installation</a></li><li><a href="#twitter_river">twitter river</a></li><li><a href="#install_twitter_river">install twitter river</a></li><li><a href="#urls_after_installation">urls after installation</a></li><li><a href="#links">links</a></li><li><a href="#installed">installed</a></li><li><a href="#articles">articles</a></li></ul>
+      </div>
+      <div class="span9 main">
+        <a name="vagrant_elasticsearch"></a><h1>vagrant-elasticsearch<a class="anchorlink" href="#vagrant_elasticsearch"></a></h1>
+<p>a vagrant box with elasticsearch tools installed.</p>
+<p>uses the shakespeare dataset from the kibana tutorial, and optionally inserts/indexes
+data from a twitter stream (requiring you to enter oauth credentials).</p>
+<a name="dependencies"></a><h2>dependencies<a class="anchorlink" href="#dependencies"></a></h2>
+<ul class="list">
+<li><a href="http://git-scm.com/">git</a></li>
+<li><a href="http://www.vagrantup.com/">vagrant</a></li>
+</ul>
+<a name="installation"></a><h2>installation<a class="anchorlink" href="#installation"></a></h2>
+<pre class="prettyprint">git clone git@github.com:skratchdot/vagrant-elasticsearch.git
+cd vagrant-elasticsearch
+git submodule update --init --recursive
+vagrant up</pre>
+<a name="twitter_river"></a><h3>twitter river<a class="anchorlink" href="#twitter_river"></a></h3>
+<a name="install_twitter_river"></a><h4>install twitter river<a class="anchorlink" href="#install_twitter_river"></a></h4>
+<ol class="list">
+<li>create twitter.json:<pre class="prettyprint">cp ./shared/data/twitter.json.example ./shared/data/twitter.json</pre>
+</li>
+<li>add your credentials to twitter.json. see <a href="https://github.com/elasticsearch/elasticsearch-river-twitter#prerequisites">elasticsearch-twitter-river prerequisites</a></li>
+<li>now re-provision your vagrant box by running:<pre class="prettyprint">vagrant reload --provision</pre>
+</li>
+<li>start/stop the river via: <a href="http://192.168.33.10/twitter.html"><a href="http://192.168.33.10/twitter.html">http://192.168.33.10/twitter.html</a></a></li>
+</ol>
+<a name="urls_after_installation"></a><h2>urls after installation<a class="anchorlink" href="#urls_after_installation"></a></h2>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main info (readme)</td>
+<td><a href="http://192.168.33.10">http://192.168.33.10</a></td>
+</tr>
+<tr>
+<td>elasticsearch</td>
+<td><a href="http://192.168.33.10:9200/">http://192.168.33.10:9200/</a></td>
+</tr>
+<tr>
+<td>elasticsearch-head</td>
+<td><a href="http://192.168.33.10:9200/_plugin/head/">http://192.168.33.10:9200/_plugin/head/</a></td>
+</tr>
+<tr>
+<td>elasticsearch-kopf</td>
+<td><a href="http://192.168.33.10:9200/_plugin/kopf/">http://192.168.33.10:9200/_plugin/kopf/</a></td>
+</tr>
+<tr>
+<td>elasticsearch-marvel</td>
+<td><a href="http://192.168.33.10:9200/_plugin/marvel/">http://192.168.33.10:9200/_plugin/marvel/</a></td>
+</tr>
+<tr>
+<td>kibana</td>
+<td><a href="http://192.168.33.10:8080/">http://192.168.33.10:8080/</a></td>
+</tr>
+<tr>
+<td>twitter river [status / start / stop]</td>
+<td><a href="http://192.168.33.10/twitter.html">http://192.168.33.10/twitter.html</a></td>
+</tr>
+<tr>
+<td>dashboard - shakespeare</td>
+<td><a href="http://192.168.33.10:8080/index.html#/dashboard/file/shakespeare.json">http://192.168.33.10:8080/index.html#/dashboard/file/shakespeare.json</a></td>
+</tr>
+<tr>
+<td>dashboard - twitter</td>
+<td><a href="http://192.168.33.10:8080/index.html#/dashboard/file/twitter.json">http://192.168.33.10:8080/index.html#/dashboard/file/twitter.json</a></td>
+</tr>
+</tbody>
+</table>
+<a name="links"></a><h2>links<a class="anchorlink" href="#links"></a></h2>
+<a name="installed"></a><h4>installed<a class="anchorlink" href="#installed"></a></h4>
+<ul class="list">
+<li><a href="http://www.elasticsearch.org">elasticsearch</a></li>
+<li><a href="https://github.com/mobz/elasticsearch-head">elasticsearch-head</a></li>
+<li><a href="https://github.com/lmenezes/elasticsearch-kopf">elasticsearch-kopf</a></li>
+<li><a href="http://www.elasticsearch.org/overview/marvel/">elasticsearch-marvel</a></li>
+<li><a href="https://github.com/elasticsearch/kibana">kibana</a></li>
+</ul>
+<a name="articles"></a><h4>articles<a class="anchorlink" href="#articles"></a></h4>
+<ul class="list">
+<li><a href="http://lbroudoux.wordpress.com/2013/04/30/real-time-analytics-with-elasticsearch-and-kibana3/">realtime analytics tutorial</a></li>
+<li><a href="http://www.elasticsearch.org/guide/en/kibana/current/using-kibana-for-the-first-time.html">kibana - 10 minute walkthrough</a></li>
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>

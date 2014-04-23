@@ -1,0 +1,4 @@
+.vagrant
+twitter.json
+shared/data/shakespeare-data.json
+shared/elasticsearch/*.deb

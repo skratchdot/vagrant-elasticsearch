@@ -1,0 +1,17 @@
+{
+    "type": "twitter",
+    "twitter": {
+        "oauth": {
+            "consumer_key": "*** YOUR Consumer key HERE ***",
+            "consumer_secret": "*** YOUR Consumer secret HERE ***",
+            "access_token": "*** YOUR Access token HERE ***",
+            "access_token_secret": "*** YOUR Access token secret HERE ***"
+        }
+    },
+    "index": {
+        "index": "twitter",
+        "type": "status",
+        "bulk_size": 100,
+        "flush_interval": "5s"
+    }
+}
