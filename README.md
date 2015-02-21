@@ -53,6 +53,9 @@ vagrant reload --provision
 
 ## links
 
+#### source code
+- [vagrant-elasticsearch](https://github.com/skratchdot/vagrant-elasticsearch/)
+
 #### installed
 - [elasticsearch](http://www.elasticsearch.org)
 - [elasticsearch-head](https://github.com/mobz/elasticsearch-head)
@@ -64,3 +67,8 @@ vagrant reload --provision
 - [realtime analytics tutorial](http://lbroudoux.wordpress.com/2013/04/30/real-time-analytics-with-elasticsearch-and-kibana3/)
 - [kibana - 10 minute walkthrough](http://www.elasticsearch.org/guide/en/kibana/current/using-kibana-for-the-first-time.html)
 
+
+## License
+
+Copyright (c) 2014 [skratchdot](http://skratchdot.com/)  
+Licensed under the MIT license.

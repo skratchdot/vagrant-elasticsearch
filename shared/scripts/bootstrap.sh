@@ -58,7 +58,7 @@ fi
 
 # get remote shakespeare data if we haven't already
 if [ ! -f /vagrant/shared/data/shakespeare-data.json ]; then
-    curl -o /vagrant/shared/data/shakespeare-data.json http://www.elasticsearch.org/guide/en/kibana/current/snippets/shakespeare.json
+    curl -o /vagrant/shared/data/shakespeare-data.json https://raw.githubusercontent.com/elasticsearch/docs/9fc666a0ea3fa2a2e1c889302b84caadc27c2223/html/en/kibana/current/snippets/shakespeare.json
 fi
 
 # create shakespeare data
